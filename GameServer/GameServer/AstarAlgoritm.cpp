@@ -74,9 +74,9 @@ void AStarAI::Near_Node_Connect()
 				as_node[i][j]->near_node[(int)Direction::UP] = as_node[i - 1][j];
 			if (j > start_x)
 				as_node[i][j]->near_node[(int)Direction::LEFT] = as_node[i][j - 1];
-			if (i  < start_x + map_width-1)
+			if (j  < start_x + map_width-1)
 				as_node[i][j]->near_node[(int)Direction::RIGHT] = as_node[i][j + 1];
-			if (j < start_y + map_height-1)
+			if (i < start_y + map_height-1)
 				as_node[i][j]->near_node[(int)Direction::DOWN] = as_node[i + 1][j];
 			if (i > start_y && j > start_x)
 				as_node[i][j]->near_node[(int)Direction::UP_LEFT] = as_node[i - 1][j - 1];
@@ -218,10 +218,7 @@ stack<AS_Node*> AStarAI::AstartSearch(int s_x, int s_y, int e_x, int e_y)
 	while (cur != nullptr)
 	{
 		closed_stack.push(cur);
-		if (cur->Get_Parent() == nullptr)
-		{
-			cur = cur->Get_Parent();
-		}
+		cur = cur->Get_Parent();
 	}
 
 	return closed_stack;
